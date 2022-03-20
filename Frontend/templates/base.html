@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="refresh" content= "{{ refreshtime }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/images/fav.PNG">
+   
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>{% block title %} {% endblock%}</title>
+</head>
+<body>
+    <section id = "cover">
+        <a href="/"> <img id ="logo" src="/static/images/CODIES ALERT.png"> </a>
+        
+        <ul>
+            <li><a class="{% if active=='home' %}active{%endif %}" href="/">Home</a></li>
+            <li><a class="{% if active=='block' %}active{%endif %}" href="{{ url_for('deposit') }}"> Deposit </a></li>
+            <li><a class="{% if active=='Transactions' %}active{%endif %}" href="{{ url_for('FundMe') }}" >Fund Me</a></li>
+        </ul>
+
+        {% block content %} {% endblock %}
+    </section>
+    
+</body>
+</html>

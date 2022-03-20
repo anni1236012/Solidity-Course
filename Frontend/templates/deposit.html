@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} Codies Alert {% endblock %}
+
+{% block content%}
+<div class="stakeContainer">
+    <!-- Deposit Functionality -->
+    <div class="tab">
+        <h1 style="text-align:center;">ANNI LIQUIDITY PROTOCOL</h1><br><br>
+        <h3 id = "staki" style="text-align:center;"> Current available USDC Token Balance : {{ AvailableBal }} <h3>
+        <div class="loadContent">
+            <form action="/depositButton" method="post">
+                <input type="number" id="stakeValue" name="depositValue" required = "required">  <br>
+                <button class="stakeSubmit" name = "submit-button" type = "submit"  >Deposit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Account Dropdown -->
+
+    <div class="Accounts">
+        <h1 style="text-align:center;">Accounts</h1> <br>
+        <form method="post">
+            {{ form.Faccounts(class = "Accounts") }}
+        </form>
+    </div>
+    
+    <!-- Withdraw Functionality -->
+    
+    <div class="tab1">
+        <h1 style="text-align:center;">Withdraw</h1><br><br>
+        <h3 id = "unstaki" style="text-align:center;"> Your current Deposited USDC Token Balance : {{ DepositedAmount }} <h3>
+        <div class="loadContent">
+            <form action="/withdrawButton" method="post">
+                <input type="number" id="unstakeValue" name="withdrawValue" required = "required">  <br>
+                <button class="stakeSubmit" name = "submit-button" type = "submit"  >Withdraw</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% block javascript %}
+        <script>
+            let account_var = document.getElementById('Faccounts');
+            account_var.onchange = function() {
+                console.log(account_var.value);
+                fetch('/refresh/' + account_var.value).then(function(response) {
+                response.json().then(function(data) {
+                    console.log(data);
+                    document.getElementById('staki').innerHTML = "Current available USDC Token Balance : " + data.currentBal;
+                    document.getElementById('unstaki').innerHTML = "Your current Deposited USDC Token Balance :  " + data.stakedBalance;
+                })
+            });
+            } 
+        </script>
+        
+    {% endblock %}
+
+{% endblock %}

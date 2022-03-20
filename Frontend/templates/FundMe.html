@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Codies Alert {% endblock %}
+
+{% block content%} 
+    <div class="grid-container1">
+       
+        <h1 style="color:whitesmoke;text-align:center;font-size: 2.3em;padding:1em 1em 0 1em;margin-right: 3em;"> Send COINS </h1>
+        
+        <form action="#" id = "form" method="post">
+            <label for="from">From Address:</label><br>
+            <input type="text" id="from" name="fromAddress" ><br>
+            <label for="to">To Address:</label><br>
+            <input type="text" id="to" name="toAddress" ><br><br>
+            <label for="amount">Amount:</label><br>
+            <input type="number" id="amount" name="Amount" ><br><br>
+            <input type="submit" value="Send">
+        </form>
+    
+    </div>
+{%endblock%}
